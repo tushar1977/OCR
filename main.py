@@ -3,7 +3,7 @@ import pytesseract
 
 
 #defining global variables
-pytesseract.pytesseract.tesseract_cmd = 'D:\\Tesseract-OCR\\tesseract.exe'
+pytesseract.pytesseract.tesseract_cmd = 'D:\\Tesseract-OCR\\tesseract.exe' #please give the location to your own pytessaract file location
 img = cv2.imread('1.png')
 
 def pre_process(img):
@@ -12,11 +12,13 @@ def pre_process(img):
     return img
 
 def print_words(box_2):
+    
     for b in box_2.splitlines():
         b = b.split('\t')
 
         with open('test.txt', 'a') as f:
             f.writelines(b[-1]+" ")
+            
 def detecting_words(img_new):
 
     himg, wimg, _ = img_new.shape
@@ -31,12 +33,8 @@ def detecting_words(img_new):
         cv2.putText(img_new, b[0], (x, himg - y + 25), cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 0, 255))
 
 
-
 img_2 = pre_process(img)
 detecting_words(img_2)
-#rint_word(img_2)
-
-
 
 cv2.imshow('Result', img_2)
 cv2.waitKey(0)
