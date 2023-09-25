@@ -36,3 +36,5 @@ def main():
 
     cv2.imshow('Result', img_2)
     cv2.waitKey(0)
+
+main()
